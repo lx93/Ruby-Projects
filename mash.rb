@@ -8,7 +8,7 @@ pets = Array.new
 mash = ["m","a","s","h"]
 ary = [wives,geolocations,cars,kids,jobs,money,pets,mash]
 ary2 = ["name of the wife", "a geographical location", "a car name", "number of kids", "job position", "how rich", "pet", "MASH"]
-
+var = 2
 
 puts "This is a MASH game."
 
@@ -32,3 +32,13 @@ end
 for i in 0..ary.size
 	puts ary[i]
 end
+
+
+
+for i in 0..ary.size-1
+	if ary[i].size > var
+		ary[i].delete_at(var-1)
+	end
+end
+
+
