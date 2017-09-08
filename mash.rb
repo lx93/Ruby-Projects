@@ -1,44 +1,115 @@
-wives = Array.new
-geolocations = Array.new
-cars = Array.new
-kids = Array.new
-jobs = Array.new
-money = Array.new
-pets = Array.new
-mash = ["m","a","s","h"]
+require 'byebug'
+
+
+def trim(array, interval)
+     running = true
+     interval_counter = 0
+     inner_pointer = 0
+     outer_pointer = 0
+     flags = Array.new(array.length, false)
+     while(running)
+          if(check_flags(flags))
+               break
+          end
+          if(inner_pointer >= array[outer_pointer].length)
+               inner_pointer = 0
+               outer_pointer += 1
+               if(outer_pointer == array.length)
+                    outer_pointer = 0
+               end
+          end
+          while(flags[outer_pointer])
+               outer_pointer += 1
+               inner_pointer = 0
+               if(outer_pointer == array.length)
+                    outer_pointer = 0
+               end
+          end
+          if(interval_counter == interval)
+               interval_counter = 0
+               if(array[outer_pointer].length == 1)
+                    flags[outer_pointer] = true
+               end
+               if(!flags[outer_pointer])
+                    array[outer_pointer].delete_at(inner_pointer)
+                    if(array[outer_pointer].length == 1)
+                    	array[outer_pointer] = array[outer_pointer].join("")
+                        flags[outer_pointer] = true
+                    end
+               end
+          end
+          interval_counter += 1
+          inner_pointer += 1
+     end
+     return array
+end
+
+def check_flags(flags)
+     return flags.all?
+end
+
+
+
+wives = ["kristina", "amy", "bianca", "sara"]
+geolocations = ["ny","sf","la","sh","rdu"]
+cars = ["bmw","audi"]
+kids = [1,3,5,7]
+jobs = ["ceo","cfo","coo","begger"]
+money = ["broke","millionare","billionare"]
+pets = ["cat","dog","lion"]
+mash = ["Mansion","Apartment","Shack","House"]
 ary = [wives,geolocations,cars,kids,jobs,money,pets,mash]
 ary2 = ["name of the wife", "a geographical location", "a car name", "number of kids", "job position", "how rich", "pet", "MASH"]
-var = 2
+ary3 = ["You will be married to: ", "You will live in: ", "You will drive a: ", "You will have this many kid(s): ", "You will be working as a: ", "You will have this much money: ", "And your pet will be a: ", "And finally you will be living in a: "]
+
 
 puts "This is a MASH game."
 
+# for i in 0..ary.size-2
+# 	puts "-----------------------------"
+# 	print "Enter ",ary2[i],".\n"
 
-for i in 0..ary.size-2
-puts "-----------------------------"
-print "Enter ",ary2[i],".\n"
+# 	name = gets.to_s
 
-name = gets.to_s
-ary[i].push(name)
+# 	while name == "\n"
+# 		print "Don't be silly. You need to at least enter one ",ary2[i], ". Enter ",ary2[i],".\n"
+# 		name = gets.to_s
+# 	end
 
-while name != "\n"
-	print "Enter another ", ary2[i] ," or hit enter to move on.\n"
-	name = gets.to_s
-	ary[i].push(name)
+
+# 	while name != "\n"
+# 		ary[i].push(name)
+# 		print "Enter another ", ary2[i] ," or hit enter to move on.\n"
+# 		name = gets.to_s
+# 	end
+# end
+
+puts ("Now, enter an integer. This is a very important number as it will decide your fate. Hit enter for random number.")
+
+input = gets.to_i
+
+if input == 0
+	interval = rand(0..10)
+else
+	interval = input.to_i
 end
-end
 
 
+puts ("Here is your original entries:")
 
-for i in 0..ary.size
+for i in 0..ary.size - 1
+	puts "----------------------"
+	puts ary3[i]
 	puts ary[i]
 end
 
+result = trim(ary,interval)
+
+puts "----------------------"
+puts "and here is your fate:"
 
 
-for i in 0..ary.size-1
-	if ary[i].size > var
-		ary[i].delete_at(var-1)
-	end
+for i in 0..result.size - 1
+	print ary3[i]
+	print(result[i],". ")
 end
-
-
