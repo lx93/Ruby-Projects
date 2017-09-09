@@ -51,13 +51,13 @@ end
 
 
 #declaring all the arrays we will be working on.
-wives = ["kristina", "amy"]
-geolocations = ["ny","sf"]
-cars = ["bmw","audi"]
-kids = [1,3]
-jobs = ["ceo","cfo"]
-money = ["broke","millionare"]
-pets = ["cat","dog"]
+wives = []
+geolocations = []
+cars = []
+kids = []
+jobs = []
+money = []
+pets = []
 mash = ["Mansion","Apartment","Shack","House"]
 ary = [wives,geolocations,cars,kids,jobs,money,pets,mash]
 ary2 = ["name of the wife", "a geographical location", "a car name", "number of kids", "job position", "how rich", "pet", "MASH"]
@@ -66,24 +66,24 @@ ary3 = ["You will be married to: ", "You will live in: ", "You will drive a: ", 
 
 puts "This is a MASH game."
 
-# for i in 0..ary.size-2
-# 	puts "-----------------------------"
-# 	print "Enter ",ary2[i],".\n"
+for i in 0..ary.size-2
+	puts "-----------------------------"
+	print "Enter ",ary2[i],".\n"
 
-# 	name = gets.to_s
+	name = gets.to_s
 
-# 	while name == "\n"
-# 		print "Don't be silly. You need to at least enter one ",ary2[i], ". Enter ",ary2[i],".\n"
-# 		name = gets.to_s
-# 	end
+	while name == "\n"
+		print "Don't be silly. You need to at least enter one ",ary2[i], ". Enter ",ary2[i],".\n"
+		name = gets.to_s
+	end
 
 
-# 	while name != "\n"
-# 		ary[i].push(name)
-# 		print "Enter another ", ary2[i] ," or hit enter to move on.\n"
-# 		name = gets.to_s
-# 	end
-# end
+	while name != "\n"
+		ary[i].push(name)
+		print "Enter another ", ary2[i] ," or hit enter to move on.\n"
+		name = gets.to_s
+	end
+end
 
 
 #prompt user to enger an interval that removes entries from arrays.
@@ -106,14 +106,13 @@ for i in 0..ary.size - 1
 	puts ary[i]
 end
 
-puts (trim(ary,interval))
-#result = trim(ary,interval)
+result = trim(ary,interval)
 
-# puts "----------------------"
-# puts "and here is your fate:"
+puts "----------------------"
+puts "and here is your fate:"
 
 
-# for i in 0..result.size - 1
-# 	print ary3[i]
-# 	print(result[i],". ")
-# end
+for i in 0..result.size - 1
+	print ary3[i]
+	print(result[i],". ")
+end
