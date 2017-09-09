@@ -3,7 +3,7 @@ require 'byebug'
 
 def trim(array, interval)
      running = true
-     interval_counter = 0
+     interval_counter = 1
      inner_pointer = 0
      outer_pointer = 0
      flags = Array.new(array.length, false)
@@ -32,9 +32,10 @@ def trim(array, interval)
                end
                if(!flags[outer_pointer])
                     array[outer_pointer].delete_at(inner_pointer)
+                    inner_pointer -= 1
                     if(array[outer_pointer].length == 1)
-                    	array[outer_pointer] = array[outer_pointer].join("")
-                        flags[outer_pointer] = true
+                         array[outer_pointer] = array[outer_pointer].join("")
+                         flags[outer_pointer] = true
                     end
                end
           end
@@ -49,14 +50,14 @@ def check_flags(flags)
 end
 
 
-
-wives = ["kristina", "amy", "bianca", "sara"]
-geolocations = ["ny","sf","la","sh","rdu"]
+#declaring all the arrays we will be working on.
+wives = ["kristina", "amy"]
+geolocations = ["ny","sf"]
 cars = ["bmw","audi"]
-kids = [1,3,5,7]
-jobs = ["ceo","cfo","coo","begger"]
-money = ["broke","millionare","billionare"]
-pets = ["cat","dog","lion"]
+kids = [1,3]
+jobs = ["ceo","cfo"]
+money = ["broke","millionare"]
+pets = ["cat","dog"]
 mash = ["Mansion","Apartment","Shack","House"]
 ary = [wives,geolocations,cars,kids,jobs,money,pets,mash]
 ary2 = ["name of the wife", "a geographical location", "a car name", "number of kids", "job position", "how rich", "pet", "MASH"]
@@ -84,6 +85,8 @@ puts "This is a MASH game."
 # 	end
 # end
 
+
+#prompt user to enger an interval that removes entries from arrays.
 puts ("Now, enter an integer. This is a very important number as it will decide your fate. Hit enter for random number.")
 
 input = gets.to_i
@@ -103,13 +106,14 @@ for i in 0..ary.size - 1
 	puts ary[i]
 end
 
-result = trim(ary,interval)
+puts (trim(ary,interval))
+#result = trim(ary,interval)
 
-puts "----------------------"
-puts "and here is your fate:"
+# puts "----------------------"
+# puts "and here is your fate:"
 
 
-for i in 0..result.size - 1
-	print ary3[i]
-	print(result[i],". ")
-end
+# for i in 0..result.size - 1
+# 	print ary3[i]
+# 	print(result[i],". ")
+# end
